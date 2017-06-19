@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Socket chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        body {
+            margin: 10px 10px;
+        }
+        #panel {
+            width: 100%;
+            margin: 0 0 5px 0;
+            padding: 5px 0;
+            height: 155px;
+            border: 1px solid #ddd;
+            overflow: auto;
+        }
+        #out p {
+            padding: 0 5px;
+            margin: 0;
+        }
+        p.status {
+            color: green;
+            font-style: italic;
+        }
+        p.broadcast {
+            color: red;
+            font-weight: bold;
+        }
+        p.cc {
+            color: #999;
+        }
+        #input {
+            display: block;
+            width: 100%;
+            padding: 5px 0;
+            border: 1px solid #ddd;
+        }
+
+    </style>
+</head>
+<body>
+
+<p>NoKeys system information</p>
+
+<div id="panel">
+    <div id="out"></div>
+</div>
+
+<input type="text" id="input">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var chat = (function ($) {
+
+        var socket,
+            $panel,
+            $output,
+            $input;
+
+
+        function init () {
+            $panel = $('#panel');
+            $output = $('#out');
+            $input = $('#input');
+
+            $input.keypress(function (e) {
+                if (e.which == 13 && this.value) {
+                    postMessage(this.value);
+                    this.value = '';
+                    e.preventDefault();
+                }
+            });
+
+
+            // TODO: failure handling
+            socket = io.connect('http://localhost:3000');
+            socket.on('toClient', receiveMessage);
+        }
+
+        function postMessage (msg) {
+            socket.emit('toServer', {
+                type: 'post',
+                msg: msg
+            });
+        }
+
+        function receiveMessage (data) {
+            var msg = data.msg || JSON.stringify(data),
+                type = data.type;
+
+
+            $output.append('<p class="' + type + '">' + msg + '</p>');
+            scrollPanel();
+        }
+
+        function scrollPanel () {
+            var diff = $output.height() - $panel.height();
+            if (diff > 0) {
+                $panel.animate({scrollTop: '+=' + diff }, 300);
+            }
+        }
+
+        $(init);// init on domReady
+
+
+        // export nothing
+        return {};
+
+    }(jQuery));
+
+</script>
+
+
+</body>
+</html>

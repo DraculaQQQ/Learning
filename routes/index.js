@@ -15,7 +15,7 @@ const ClientSecret = "VISZWNjvyo20ZT-_xLAh5mM2";
 const RedirectionUrl = "http://nokeys.ddns.net/oauth2callback";
 var jwt = require('jsonwebtoken');
 var request = require("request")
-var Request = require('../models/request');
+var Requests = require('../models/request');
 
 var urlUsserInfo = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=';
 
@@ -61,7 +61,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/test', function (req, res, next) {
 
-    Request.find({}, function (err, user) {
+    Requests.find({}, function (err, user) {
         if(err){
             console.log(err);
         } else {

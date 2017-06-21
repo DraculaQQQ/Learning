@@ -58,6 +58,10 @@ router.get('/', function (req, res, next) {
     res.render('index', {title: 'Kasper test page'});
 });
 
+router.get('/test', function (req, res, next) {
+    res.render('test', {title: 'Kasper test page'});
+});
+
 
 router.get('/profile', isLoggedIn, function (req, res) {
     res.render('profile', {
@@ -130,6 +134,10 @@ router.get('/oauth2callback/', function (req, res, next) {
                 var name = body['name'];
                 var email = body['email'];
                 var id = body['id'];
+                var picture = body['picture'];
+                var gender = body['gender'];
+                var nationality = body['locale'];
+                var verifiedEmail = body['verified_email'];
 
 
                 if (!error && response.statusCode === 200) {
@@ -137,7 +145,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                 } else {
                     console.log('something went wrong');
                 }
-                res.render('profile', {id: id, id_token: token, email: email, name: name});
+                res.render('profile', {id: id, gender: gender, nationality: nationality, email: email, name: name, picture: picture, vemail: verifiedEmail});
             });
 
             console.log(tokens);

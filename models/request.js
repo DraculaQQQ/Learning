@@ -27,6 +27,7 @@ var requestSchema = mongoose.Schema({
     }
 
 });
-var Requests = mongoose.model('Request', requestSchema);  //***
+
+var Requests = mongoose.model('request', requestSchema);  //***
 
 module.exports = Requests;

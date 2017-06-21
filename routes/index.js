@@ -61,17 +61,18 @@ router.get('/', function (req, res, next) {
 
 router.get('/test', function (req, res, next) {
 
-    Requests.find({}, function (err, user) {
+
+    Requests.find({}, function (err, users) {
         if(err){
             console.log(err);
         } else {
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.write('DATA ARE: '+ "<br/>");
-            for(i in request){
-                res.write('Name: '+user[i].name+"<br/>");
-                res.write(' id: '+user[i].id+"<br/>" );
-                res.write('approved: ' +user[i].approved+"<br/>" );
-                res.write('lock: ' +user[i].lock+"<br/>" );
+            for(userhub in users){
+                res.write('Name: '+users[userhub].name+"<br/>");
+                res.write(' id: '+users[userhub].id+"<br/>" );
+                res.write('approved: ' +users[userhub].approved+"<br/>" );
+                res.write('lock: ' +users[userhub].lock+"<br/>" );
                 ;
 
             }

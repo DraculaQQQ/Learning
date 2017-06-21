@@ -4,7 +4,8 @@
 var mongoose = require('mongoose');
 var connect = require('../config/dbconnect');
 
-/*/mongoose.connect('mongodb://127.0.0.1/learning', function (err) {
+
+mongoose.connect('mongodb://127.0.0.1/learning', function (err) {
     if (err) {
         console.log('connection error ', err);
     } else {
@@ -13,7 +14,7 @@ var connect = require('../config/dbconnect');
 
 });
 
-*/
+
 // var users = mongoose.connection;
 
 

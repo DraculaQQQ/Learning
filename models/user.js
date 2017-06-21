@@ -30,6 +30,10 @@ var userSchema = mongoose.Schema({
     pwd:{
         type: String,
         required: true
+    },
+    id:{
+        type: String,
+        required: true
     }
 
 });

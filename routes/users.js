@@ -20,6 +20,7 @@ router.get('/', function(req, res, next) {
               res.write(' Last Name: '+ JSON.parse(JSON.stringify( users[i].lname)) +"<br/>" );
               res.write('Email: ' +users[i].email +"<br/>" );
               res.write('password: ' +users[i].pwd +"<br/>" );
+              res.write('id: ' +users[i].id +"<br/>" );
 
           }
           res.end();
@@ -68,6 +69,7 @@ router.post('/login', function(req, res, next) {
                 for (i in users) {
                     res.write('First Name: ' + users[i].fname);
                     res.write(' Last Name: ' + users[i].lname + "<br/>");
+                    res.write(' ID: ' + users[i].id + "<br/>");
                 }
 
             } else {

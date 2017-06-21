@@ -15,6 +15,7 @@ const ClientSecret = "VISZWNjvyo20ZT-_xLAh5mM2";
 const RedirectionUrl = "http://nokeys.ddns.net/oauth2callback";
 var jwt = require('jsonwebtoken');
 var request = require("request")
+var authRequest = require('../models/request');
 
 var urlUsserInfo = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=';
 
@@ -98,23 +99,13 @@ router.get('/oauth2callback/', function (req, res, next) {
     var oauth2Client = getOAuthClient();
     var session = req.session;
     var code = req.query.code; // the query param code
-    var id_token = '';
-    var name = '';
-    var email = '';
-    var id = '';
-    var token = '';
 
     oauth2Client.getToken(code,
 
         function (err, tokens) {
-
-
-
-
             for (var key = 'id_token' in tokens) {
                 this.token = tokens['id_token'];
                 if (tokens.hasOwnProperty(key)) {
-                    id_token = tokens['id_token'];
                     console.log(tokens['id_token']);
 
                     if (/content_[0-9]+_image/.test(key)) {
@@ -123,29 +114,29 @@ router.get('/oauth2callback/', function (req, res, next) {
                     }
                 }
             }
-            // var decodedIdToken = jwt.decode(id_token);
-            // console.log(decodedIdToken);
+
             // Now tokens contains an access_token and an optional refresh_token. Save them.
-            if(tokens['access_token'] !=null) {
-                request({
-                    url: urlUsserInfo + tokens['access_token'],
-                    json: true
-                }, function (error, response, body) {
-                    console.log(urlUsserInfo);
-                    var name = body['name'];
-                    var email = body['email'];
-                    var id = body['id'];
-                    var picture = body['picture'];
-                    var gender = body['gender'];
-                    var nationality = body['locale'];
-                    var verifiedEmail = body['verified_email'];
+
+            request({
+                url: urlUsserInfo + tokens['access_token'],
+                json: true
+            }, function (error, response, body) {
+                console.log(urlUsserInfo);
+                var name = body['name'];
+                var email = body['email'];
+                var id = body['id'];
+                var picture = body['picture'];
+                var gender = body['gender'];
+                var nationality = body['locale'];
+                var verifiedEmail = body['verified_email'];
 
 
-                    if (!error && response.statusCode === 200) {
-                        console.log(body) // Print the json response
-                    } else {
-                        console.log('something went wrong');
-                    }
+                if (!error && response.statusCode === 200) {
+                    console.log(body) // Print the json response
+                } else {
+                    console.log('Something went wrong');
+                }
+                if(checkForRequests(id)) {
                     res.render('profile', {
                         id: id,
                         gender: gender,
@@ -155,10 +146,11 @@ router.get('/oauth2callback/', function (req, res, next) {
                         picture: picture,
                         vemail: verifiedEmail
                     });
-                });
-            } else {
-                console.log('Token was null');
-            }
+                }else{
+                    res.write('der var en request');
+                }
+            });
+
             console.log(tokens);
             console.log(id_token);
 
@@ -171,8 +163,9 @@ router.get('/oauth2callback/', function (req, res, next) {
 
             }
 
-            //res.render('profile', {id: id, id_token: token, email: email, name: name});
-        });
+
+
+    });
 });
 
 router.get('/websocket/', function (req, res, next) {
@@ -266,6 +259,22 @@ function sendMessage(string) {
     client.emit('toServer', {type: 'post', msg: data});
 
 }
+function checkForRequests (id) {
+    var check = false;
+    authRequest.find({id: id, approved: 0}, function (err, request) {
+        if (err) {
+            console.log(err);
+            return check;
+        } else {
+            console.log(request[0]);
+            check = true;
+            return check;
+        }
+
+    });
+}
+
+
 
 
 module.exports = router;

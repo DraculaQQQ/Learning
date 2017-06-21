@@ -2,6 +2,8 @@
 <!doctype html>
 <html>
 <head>
+
+
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -25,35 +27,15 @@
 
 
 </p>
-<form>
-    
-    <fieldset class="form-group">
-        <legend>Radio buttons</legend>
+<div style="width: 50%">I'm on the left>
+<   form action="#" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
         <div class="form-check">
             <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                Option one is this and that&mdash;be sure to include why it's great
+                <input type="checkbox" class="form-check-input">
+                I give permission my permission to access my house
             </label>
         </div>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-                Option two can be something else and selecting it will deselect option one
-            </label>
-        </div>
-        <div class="form-check disabled">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-                Option three is disabled
-            </label>
-        </div>
-    </fieldset>
-    <div class="form-check">
-        <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">
-            Check me out
-        </label>
-    </div>
+</div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

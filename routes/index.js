@@ -15,7 +15,7 @@ const ClientSecret = "VISZWNjvyo20ZT-_xLAh5mM2";
 const RedirectionUrl = "http://nokeys.ddns.net/oauth2callback";
 var jwt = require('jsonwebtoken');
 var request = require("request")
-var authRequest = require('../models/user');
+var Request = require('../models/request');
 
 var urlUsserInfo = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=';
 
@@ -61,17 +61,17 @@ router.get('/', function (req, res, next) {
 
 router.get('/test', function (req, res, next) {
 
-    authRequest.find({}, function (err, users) {
+    Request.find({}, function (err, request) {
         if(err){
             console.log(err);
         } else {
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.write('DATA ARE: '+ "<br/>");
-            for(i in users){
-                res.write('Name: '+users[i].name);
-                res.write(' id: '+users[i].id+"<br/>" );
-                res.write('approved: ' +users[i].approved +"<br/>" );
-                res.write('lock: ' +users[i].lock +"<br/>" );
+            for(i in request){
+                res.write('Name: '+request[i].name+"<br/>");
+                res.write(' id: '+request[i].id+"<br/>" );
+                res.write('approved: ' +request[i].approved+"<br/>" );
+                res.write('lock: ' +request[i].lock+"<br/>" );
                 ;
 
             }

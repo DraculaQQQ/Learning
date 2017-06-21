@@ -16,11 +16,11 @@ router.get('/', function(req, res, next) {
           res.writeHead(200, {'Content-Type': 'text/html'});
           res.write('DATA ARE: '+ "<br/>");
           for(i in users){
-              res.write('First Name: '+users[i].fname);
+              res.write('First Name: '+users[i].fname+"<br/>");
               res.write(' Last Name: '+ JSON.parse(JSON.stringify( users[i].lname)) +"<br/>" );
               res.write('Email: ' +users[i].email +"<br/>" );
               res.write('password: ' +users[i].pwr +"<br/>" );
-              res.write('id: ' +users[i].id +"<br/>" );
+
 
           }
           res.end();

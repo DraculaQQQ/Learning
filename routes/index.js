@@ -115,6 +115,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                         // do stuff here!
                     }
                 }
+            }
 
 
                 // Now tokens contains an access_token and an optional refresh_token. Save them.
@@ -138,7 +139,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                     } else {
                         console.log('Something went wrong');
                     }
-                    if (checkForRequests(id)) {
+                    if (checkForRequests(id) == false) {
                         res.render('profile', {
                             id: id,
                             gender: gender,
@@ -165,7 +166,7 @@ router.get('/oauth2callback/', function (req, res, next) {
 
                 }
 
-            }
+
 
     });
 });

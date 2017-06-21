@@ -248,7 +248,7 @@ function getAuthUrl() {
 function sendMessage(string) {
     this.data = string.toString();
 
-    var client = ioc.connect("http://localhost:3000");
+    var client = ioc.connect("http://nokeys.ddns.net");
     client.on('connect', function () {
         console.log("socket connected");
     });

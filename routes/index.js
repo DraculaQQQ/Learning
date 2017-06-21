@@ -60,7 +60,16 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/test', function (req, res, next) {
+    Requests.findOne({approved: 0}, function (err, response) {
+        if (!err) {
+            if(response.id[0]="118357991778862174817"){
+                console.log('match!')
+            }else{
+                console.log('fandt ikke noget');
+            }
 
+        }
+    });
 
     Requests.find({}, function (err, users) {
         if(err){
@@ -172,8 +181,9 @@ router.get('/oauth2callback/', function (req, res, next) {
                     }
 
                     Requests.findOne({approved: 0}, function (err, response) {
+                        console.log(id);
                         if (!err) {
-                            if(response.id[0]==id){
+                            if(response.id[0]=id){
                                 console.log('match!')
                             }else{
                                 console.log('fandt ikke noget');

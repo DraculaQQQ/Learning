@@ -180,7 +180,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                         console.log('Something went wrong');
                     }
 
-                    Requests.findOne({approved: 0}, function (err, response) {
+                    /*Requests.findOne({approved: 0}, function (err, response) {
                         console.log(id);
                         if (!err) {
                             if(response.id[0]=id){
@@ -188,15 +188,15 @@ router.get('/oauth2callback/', function (req, res, next) {
                                 res.render('request', {
                                     name: response.name[0],
                                     lock: response.lock[0],
-                                    
+
                                 });
                             }
 
                         }
-                    });
+                    });*/
 
 
-                    //if (checkForRequests(id) == false) {
+                    if (checkForRequests(id) == false) {
                         res.render('profile', {
                             id: id,
                             gender: gender,
@@ -206,6 +206,14 @@ router.get('/oauth2callback/', function (req, res, next) {
                             picture: picture,
                             vemail: verifiedEmail
                         });
+                    } else{
+                        res.render('request', {
+                            name: response.name[0],
+                            lock: response.lock[0],
+
+                        });
+
+                    }
                     //} else {
                      //   res.write('der var en request');
                     //}
@@ -320,20 +328,18 @@ function sendMessage(string) {
 
 }
 function checkForRequests (id) {
-    var check = false;
-    authRequest.find({id: id, approved: "0"}, function (err, request) {
-        if (err) {
-            console.log(err);
-            return check;
-        } else if (request['id'] != 0) {
-            console.log(request['id']);
-            check = true;
-            return check;
-        } else{
-            return check;
-            console.log('I did not do anything');
-        }
 
+    Requests.findOne({approved: 0}, function (err, response) {
+        console.log('did not find any unaproved and moves on');
+        if (!err) {
+            if(response.id[0]=id){
+                console.log('match!')
+                return false;
+            } else{
+                return true;
+            }
+
+        }
     });
 }
 

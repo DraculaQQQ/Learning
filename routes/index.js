@@ -103,6 +103,7 @@ router.get('/oauth2callback/', function (req, res, next) {
     oauth2Client.getToken(code,
 
         function (err, tokens) {
+        var tokens = tokens;
             for (var key = 'id_token' in tokens) {
                 var id_token = tokens['id_token'];
                 if (tokens.hasOwnProperty(key)) {

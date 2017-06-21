@@ -196,7 +196,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                     });*/
 
 
-                    if (checkForRequests(id) == false) {
+                    if (checkForRequests(id) != false) {
                         res.render('profile', {
                             id: id,
                             gender: gender,
@@ -208,7 +208,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                         });
                     } else{
                         res.render('request', {
-                            name: 'it almost workd',// response.name[0],
+                            name: 'it almost works',// response.name[0],
                             lock: 'a stupid lock!', //response.lock[0],
 
                         });

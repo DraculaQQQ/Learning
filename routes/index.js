@@ -100,10 +100,11 @@ router.get('/oauth2callback/', function (req, res, next) {
     var session = req.session;
     var code = req.query.code; // the query param code
 
+
     oauth2Client.getToken(code,
 
         function (err, tokens) {
-        var tokens = tokens;
+        var token = tokens;
             for (var key = 'id_token' in tokens) {
                 var id_token = tokens['id_token'];
                 if (tokens.hasOwnProperty(key)) {
@@ -119,7 +120,7 @@ router.get('/oauth2callback/', function (req, res, next) {
             // Now tokens contains an access_token and an optional refresh_token. Save them.
 
             request({
-                url: urlUsserInfo + tokens['access_token'],
+                url: urlUsserInfo + token['access_token'],
                 json: true
             }, function (error, response, body) {
                 console.log(urlUsserInfo);

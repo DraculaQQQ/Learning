@@ -60,7 +60,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/test', function (req, res, next) {
-    authRequest.find({id: id, approved: "0"}, function (err, request) {
+    authRequest.find({id: '118357991778862174817', approved: "0"}, function (err, request) {
         if (err) {
             console.log(err);
         } else {

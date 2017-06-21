@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var connect = require('../config/dbconnect');
 
 
-mongoose.connect('mongodb://127.0.0.1/learning', function (err) {
+/*mongoose.connect('mongodb://127.0.0.1/learning', function (err) {
     if (err) {
         console.log('connection error ', err);
     } else {
@@ -14,7 +14,7 @@ mongoose.connect('mongodb://127.0.0.1/learning', function (err) {
 
 });
 
-
+*/
 // var users = mongoose.connection;
 
 
@@ -42,7 +42,7 @@ var userSchema = mongoose.Schema({
     }
 
 });
-var requestSchema = mongoose.Schema({
+/* var requestSchema = mongoose.Schema({
     name:{
         type: String,
         required: true
@@ -61,8 +61,8 @@ var requestSchema = mongoose.Schema({
     }
 
 });
-
-var Users = mongoose.model('user', userSchema, 'Users');  //***
-var request = mongoose.model('request', requestSchema, 'Users');
+*/
+var Users = mongoose.model('user', userSchema);  //***
+// var request = mongoose.model('request', requestSchema, 'Users');
 
 module.exports = Users;

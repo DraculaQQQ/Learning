@@ -60,6 +60,26 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/test', function (req, res, next) {
+
+    authRequest.find({}, function (err, users) {
+        if(err){
+            console.log(err);
+        } else {
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write('DATA ARE: '+ "<br/>");
+            for(i in users){
+                res.write('Name: '+users[i].name);
+                res.write(' id: '+users[i].id+"<br/>" );
+                res.write('approved: ' +users[i].approved +"<br/>" );
+                res.write('lock: ' +users[i].lock +"<br/>" );
+                ;
+
+            }
+            res.end();
+        }
+    });
+
+    /*
     authRequest.find({id: '118357991778862174817', approved: "0"}, function (err, request) {
         if (err) {
             console.log(err);
@@ -68,7 +88,9 @@ router.get('/test', function (req, res, next) {
             console.log('jeg render bare mit shiit');
             res.render('test', {title: 'Kasper test page'});
         }
-    });
+
+
+    }); */
 });
 
 

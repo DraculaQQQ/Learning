@@ -115,57 +115,57 @@ router.get('/oauth2callback/', function (req, res, next) {
                         // do stuff here!
                     }
                 }
-            }
-
-            // Now tokens contains an access_token and an optional refresh_token. Save them.
-
-            request({
-                url: urlUsserInfo + token['access_token'],
-                json: true
-            }, function (error, response, body) {
-                console.log(urlUsserInfo);
-                var name = body['name'];
-                var email = body['email'];
-                var id = body['id'];
-                var picture = body['picture'];
-                var gender = body['gender'];
-                var nationality = body['locale'];
-                var verifiedEmail = body['verified_email'];
 
 
-                if (!error && response.statusCode === 200) {
-                    console.log(body) // Print the json response
-                } else {
-                    console.log('Something went wrong');
+                // Now tokens contains an access_token and an optional refresh_token. Save them.
+
+                request({
+                    url: urlUsserInfo + token['access_token'],
+                    json: true
+                }, function (error, response, body) {
+                    console.log(urlUsserInfo);
+                    var name = body['name'];
+                    var email = body['email'];
+                    var id = body['id'];
+                    var picture = body['picture'];
+                    var gender = body['gender'];
+                    var nationality = body['locale'];
+                    var verifiedEmail = body['verified_email'];
+
+
+                    if (!error && response.statusCode === 200) {
+                        console.log(body) // Print the json response
+                    } else {
+                        console.log('Something went wrong');
+                    }
+                    if (checkForRequests(id)) {
+                        res.render('profile', {
+                            id: id,
+                            gender: gender,
+                            nationality: nationality,
+                            email: email,
+                            name: name,
+                            picture: picture,
+                            vemail: verifiedEmail
+                        });
+                    } else {
+                        res.write('der var en request');
+                    }
+                });
+
+                console.log(tokens);
+                console.log(id_token);
+
+                console.log(jwt.decode(id_token));
+                sendMessage('the token is: ' + id_token);
+                if (!err) {
+                    oauth2Client.setCredentials(tokens);
+                    //saving the token to current session
+                    session["tokens"] = tokens;
+
                 }
-                if(checkForRequests(id)) {
-                    res.render('profile', {
-                        id: id,
-                        gender: gender,
-                        nationality: nationality,
-                        email: email,
-                        name: name,
-                        picture: picture,
-                        vemail: verifiedEmail
-                    });
-                }else{
-                    res.write('der var en request');
-                }
-            });
-
-            console.log(tokens);
-            console.log(id_token);
-
-            console.log(jwt.decode(id_token));
-            sendMessage('the token is: ' + id_token);
-            if (!err) {
-                oauth2Client.setCredentials(tokens);
-                //saving the token to current session
-                session["tokens"] = tokens;
 
             }
-
-
 
     });
 });

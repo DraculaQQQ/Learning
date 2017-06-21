@@ -61,17 +61,17 @@ router.get('/', function (req, res, next) {
 
 router.get('/test', function (req, res, next) {
 
-    Request.find({}, function (err, request) {
+    Users.find({}, function (err, user) {
         if(err){
             console.log(err);
         } else {
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.write('DATA ARE: '+ "<br/>");
             for(i in request){
-                res.write('Name: '+request[i].name+"<br/>");
-                res.write(' id: '+request[i].id+"<br/>" );
-                res.write('approved: ' +request[i].approved+"<br/>" );
-                res.write('lock: ' +request[i].lock+"<br/>" );
+                res.write('Name: '+user[i].name+"<br/>");
+                res.write(' id: '+user[i].id+"<br/>" );
+                res.write('approved: ' +user[i].approved+"<br/>" );
+                res.write('lock: ' +user[i].lock+"<br/>" );
                 ;
 
             }

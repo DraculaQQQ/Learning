@@ -64,7 +64,7 @@ router.get('/test', function (req, res, next) {
         if (err) {
             console.log(err);
         } else {
-            console.log(request['name']);
+            console.log(request[0].name);
             console.log('jeg render bare mit shiit');
             res.render('test', {title: 'Kasper test page'});
         }

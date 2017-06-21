@@ -184,7 +184,7 @@ router.get("/details", function (req, res) {
 router.get('/sendmessage', function (req, res, next) {
     var data = req.param('message');
 
-    var client = ioc.connect("http://localhost:3000");
+    var client = ioc.connect("http://http://165.227.143.48:3000");
     client.on('connect', function () {
         console.log("socket connected");
     });

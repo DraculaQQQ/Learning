@@ -208,8 +208,8 @@ router.get('/oauth2callback/', function (req, res, next) {
                         });
                     } else{
                         res.render('request', {
-                            name: response.name[0],
-                            lock: response.lock[0],
+                            name: 'it almost workd',// response.name[0],
+                            lock: 'a stupid lock!', //response.lock[0],
 
                         });
 

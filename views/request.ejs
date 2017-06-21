@@ -1,6 +1,6 @@
 <!-- views/profile.ejs -->
 <!doctype html>
-<html>
+<html xmlns:text-align="http://www.w3.org/1999/xhtml" xmlns:display="http://www.w3.org/1999/xhtml">
 <head>
 
 
@@ -17,7 +17,7 @@
         p {text-align:center;}
     </style>
 </head>
-<body>
+<body { text-align: center; }>
 <form action="#" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
 
     <input type="checkbox" name="checkbox" value="check" id="agree" /> I have read and agree to the Terms and Conditions and Privacy Policy
@@ -31,7 +31,7 @@
 
 
 
-<div class="form" style="width: 50%">
+<div class="form" { display: inline-block; }>
     <form name="Form1" action="#" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('For this DEMO you have to accept!! :D'); return false; }">
         <div class="form-check">
             <label class="form-check-label">

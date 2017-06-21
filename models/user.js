@@ -2,7 +2,7 @@
  * Created by Kasper Richard Mølle on 13-06-2017.
  */
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/learning', function (err) {
+/*/mongoose.connect('mongodb://127.0.0.1/learning', function (err) {
     if (err) {
         console.log('connection error ', err);
     } else {
@@ -10,6 +10,8 @@ mongoose.connect('mongodb://127.0.0.1/learning', function (err) {
     }
 
 });
+
+*/
 // var users = mongoose.connection;
 
 

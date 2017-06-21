@@ -7,11 +7,20 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var authConfig = require('./config/auth2')
+var mongoose = require('mongoose');
 
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+mongoose.connect('mongodb://127.0.0.1/learning', function (err) {
+    if (err) {
+        console.log('connection error ', err);
+    } else {
+        console.log('connection to MongoDB successful');
+    }
+
+});
 
 // Passport session setup.
 //

@@ -1,10 +1,8 @@
 /**
  * Created by Kasper Richard Mølle on 21-06-2017.
  */
-/**
- * Created by Kasper Richard Mølle on 13-06-2017.
- */
 var mongoose = require('mongoose');
+var connect = require('../config/dbconnect');
 
 // var users = mongoose.connection;
 

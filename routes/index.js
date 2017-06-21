@@ -170,6 +170,17 @@ router.get('/oauth2callback/', function (req, res, next) {
                     } else {
                         console.log('Something went wrong');
                     }
+
+                    Requests.findOne(approval = 0, function (err, response) {
+                        if (!err) {
+                            if(response.id[0]==id){
+                                console.log('match!')
+                            }
+
+                        }
+                    });
+
+
                     //if (checkForRequests(id) == false) {
                         res.render('profile', {
                             id: id,

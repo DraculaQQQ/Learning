@@ -185,8 +185,11 @@ router.get('/oauth2callback/', function (req, res, next) {
                         if (!err) {
                             if(response.id[0]=id){
                                 console.log('match!')
-                            }else{
-                                console.log('fandt ikke noget');
+                                res.render('request', {
+                                    name: response.name[0],
+                                    lock: response.lock[0],
+                                    
+                                });
                             }
 
                         }

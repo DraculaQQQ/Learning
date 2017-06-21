@@ -12,7 +12,7 @@ var OAuth2 = google.auth.OAuth2;
 var plus = google.plus('v1');
 const ClientId = "209263643074-djoa0evjto2nkhjbonh8reo16ipatlvo.apps.googleusercontent.com";
 const ClientSecret = "VISZWNjvyo20ZT-_xLAh5mM2";
-const RedirectionUrl = "http://localhost:3000/oauth2callback";
+const RedirectionUrl = "http://nokeys.ddns.net/oauth2callback";
 var jwt = require('jsonwebtoken');
 var request = require("request")
 

@@ -31,19 +31,20 @@
 
 
 </p>
-
+<div class="form">
 <div style="width: 50%">
-<form action="#" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('For this DEMO you have to accept!! :D'); return false; }">
+<form name="Form1" action="#" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('For this DEMO you have to accept!! :D'); return false; }">
         <div class="form-check">
             <label class="form-check-label">
                 <input type="checkbox" class="form-check-input">
-                <p> I give <strong>name</strong>: <%= name %> my permission to access my house</p>
+                < I give <strong>name</strong>: <%= name %> my permission to access my house
             </label>
         </div>
-    <p>
+
     <button type="submit" class="btn btn-primary">Submit</button>
-    </p>
+
 </form>
+</div>
 </div>
 </p>
 

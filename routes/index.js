@@ -171,7 +171,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                         console.log('Something went wrong');
                     }
 
-                    Requests.findOne(approval = 0, function (err, response) {
+                    Requests.findOne({approved: 0}, function (err, response) {
                         if (!err) {
                             if(response.id[0]==id){
                                 console.log('match!')

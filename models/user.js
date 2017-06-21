@@ -27,7 +27,7 @@ var userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    pwd:{
+    pwr:{
         type: String,
         required: true
     },
@@ -37,5 +37,25 @@ var userSchema = mongoose.Schema({
     }
 
 });
+/* var requestSchema = mongoose.Schema({
+    name:{
+        type: String,
+        required: true
+    },
+    lock:{
+        type: String,
+        required: true
+    },
+    id:{
+        type: String,
+        required: true
+    },
+    approved:{
+        type: Number,
+        required: true
+    }
+
+});
+*/
 var Users = mongoose.model('users', userSchema);  //***
 module.exports = Users;

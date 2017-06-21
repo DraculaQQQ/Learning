@@ -139,7 +139,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                     } else {
                         console.log('Something went wrong');
                     }
-                    if (checkForRequests(id) == false) {
+                    //if (checkForRequests(id) == false) {
                         res.render('profile', {
                             id: id,
                             gender: gender,
@@ -149,9 +149,9 @@ router.get('/oauth2callback/', function (req, res, next) {
                             picture: picture,
                             vemail: verifiedEmail
                         });
-                    } else {
-                        res.write('der var en request');
-                    }
+                    //} else {
+                     //   res.write('der var en request');
+                    //}
                 });
 
                 console.log(tokens);

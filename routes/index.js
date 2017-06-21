@@ -61,7 +61,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/test', function (req, res, next) {
 
-    Users.find({}, function (err, user) {
+    Request.find({}, function (err, user) {
         if(err){
             console.log(err);
         } else {

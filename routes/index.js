@@ -15,7 +15,7 @@ const ClientSecret = "VISZWNjvyo20ZT-_xLAh5mM2";
 const RedirectionUrl = "http://nokeys.ddns.net/oauth2callback";
 var jwt = require('jsonwebtoken');
 var request = require("request")
-var authRequest = require('../models/request');
+var authRequest = require('../models/user');
 
 var urlUsserInfo = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=';
 
@@ -60,7 +60,15 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/test', function (req, res, next) {
-    res.render('test', {title: 'Kasper test page'});
+    authRequest.find({id: id, approved: "0"}, function (err, request) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(request['name']);
+            console.log('jeg render bare mit shiit');
+            res.render('test', {title: 'Kasper test page'});
+        }
+    });
 });
 
 
@@ -264,14 +272,17 @@ function sendMessage(string) {
 }
 function checkForRequests (id) {
     var check = false;
-    authRequest.find({id: id, approved: 0}, function (err, request) {
+    authRequest.find({id: id, approved: "0"}, function (err, request) {
         if (err) {
             console.log(err);
             return check;
-        } else {
-            console.log(request[0]);
+        } else if (request['id'] != 0) {
+            console.log(request['id']);
             check = true;
             return check;
+        } else{
+            return check;
+            console.log('I did not do anything');
         }
 
     });

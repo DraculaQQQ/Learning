@@ -37,7 +37,7 @@ var userSchema = mongoose.Schema({
     }
 
 });
-/* var requestSchema = mongoose.Schema({
+var requestSchema = mongoose.Schema({
     name:{
         type: String,
         required: true
@@ -56,6 +56,8 @@ var userSchema = mongoose.Schema({
     }
 
 });
-*/
-var Users = mongoose.model('users', userSchema);  //***
+
+var Users = mongoose.model('user', userSchema, 'Users');  //***
+var request = mongoose.model('request', requestSchema, 'Users');
+
 module.exports = Users;

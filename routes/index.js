@@ -143,7 +143,7 @@ router.get('/oauth2callback/', function (req, res, next) {
 
     oauth2Client.getToken(code, function (err, tokens) {
         var token = tokens;
-        console.log(jwt.decode(tokens['id_token']));
+        // console.log(jwt.decode(tokens['id_token']));
         request({url: urlUsserInfo + tokens['access_token'], json: true}, function (error, response, body) {
                     console.log(urlUsserInfo);
                     var name = body['name'];
@@ -156,7 +156,7 @@ router.get('/oauth2callback/', function (req, res, next) {
 
 
                     if (!error && response.statusCode === 200) {
-                        // console.log(body) // Print the json response
+                        console.log('i got no errors and code 200'); // Print the json response
                     } else {
                         console.log('Something went wrong');
                     }

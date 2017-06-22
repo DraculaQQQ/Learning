@@ -136,6 +136,7 @@ router.get('/google/', passport.authenticate('google', {scope: ['email', 'openid
 router.get('/oauth2callback/', function (req, res, next) {
 
     console.log(req.param('code'));
+    sendMessage('Server receives OAuth authorization code which is: ' + req.param('code'));
     var oauth2Client = getOAuthClient();
     var session = req.session;
     var code = req.query.code; // the query param code
@@ -347,11 +348,5 @@ function checkForRequests (id) {
         }
     });
 }
-
-function getUserInfo (token){
-    return token;
-}
-
-
 
 module.exports = router;

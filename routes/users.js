@@ -96,8 +96,16 @@ router.get('/authorization/', function(req, res, next) {
 
     // var user = req.param('user');
     var request = req.params.request;
+    var id = req.params.id;
     console.log(req.param('id'));
     console.log(req.param('request'));
+    Requests.find({ id:req.param('id') }).remove().exec();
+    var re = new Requests({ id: req.param('id'), name: "Angel Angelov", lock: "Home lock", approved:req.param('request')});
+    re.save(function(err) {
+        if (err) console.log(err);
+        else console.log("Success!")
+    })
+    /*
     Requests.findOne({id:req.param('id')}, function(err, p) {
         if (!p)
             return next(new Error('Could not load Document'));
@@ -105,20 +113,16 @@ router.get('/authorization/', function(req, res, next) {
             // do your updates here
             p.approved = request;
 
-            var re = new Requests({ id: id, name: "Angel Angelov", lock: "Home lock", approved:request});
+            var re = new Requests({ id: req.param('id'), name: "Angel Angelov", lock: "Home lock", approved:1});
             re.save(function(err) {
                 if (err) console.log(err);
                 else console.log("Success!")
             })
 
-            /*p.save(function(err) {
-                if (err)
-                    console.log('error')
-                else
-                    console.log('success')
-            });*/
+
         }
     });
+    */
     // res.writeHead(200, {'Content-Type': 'text/html'});
     // res.write('Request received');
     // res.end();

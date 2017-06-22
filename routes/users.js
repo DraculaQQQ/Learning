@@ -96,22 +96,27 @@ router.get('/authorization/', function(req, res, next) {
 
     // var user = req.param('user');
     var request = req.params.request;
-    console.log(req.param.id);
-    console.log(req.param.request);
-    Requests.find({id:req.params.id}, function(err, p) {
+    console.log(req.param('id'));
+    console.log(req.param('request'));
+    Requests.findOne({id:req.param('id')}, function(err, p) {
         if (!p)
             return next(new Error('Could not load Document'));
         else {
             // do your updates here
             p.approved = request;
 
+            var re = new Requests({ id: id, name: "Angel Angelov", lock: "Home lock", approved:request});
+            re.save(function(err) {
+                if (err) console.log(err);
+                else console.log("Success!")
+            })
 
-            p.save(function(err) {
+            /*p.save(function(err) {
                 if (err)
                     console.log('error')
                 else
                     console.log('success')
-            });
+            });*/
         }
     });
     // res.writeHead(200, {'Content-Type': 'text/html'});

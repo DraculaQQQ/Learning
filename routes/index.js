@@ -145,20 +145,7 @@ router.get('/oauth2callback/', function (req, res, next) {
 
         function (err, tokens) {
         var token = tokens;
-            for (var key = 'id_token' in tokens) {
-                var id_token = tokens['id_token'];
-                if (tokens.hasOwnProperty(key)) {
-                    console.log(tokens['id_token']);
 
-                    if (/content_[0-9]+_image/.test(key)) {
-                        console.log('match!', tokens[key]);
-                        // do stuff here!
-                    }
-                }
-            }
-
-
-                // Now tokens contains an access_token and an optional refresh_token. Save them.
 
                 request({
                     url: urlUsserInfo + tokens['access_token'],

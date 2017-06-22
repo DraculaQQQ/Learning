@@ -3,6 +3,7 @@ var router = express.Router();
 // bring in models
 var Users = require('../models/user');
 var Requests = require('../models/request');
+var request = require('request');
 
 
 
@@ -86,7 +87,13 @@ router.post('/login', function(req, res, next) {
 
 router.get('/consent/', function(req, res, next) {
 
-    // var user = req.param('user');
+    request('http://nokeys.ddns.net/users/authorization?id=118357991778862174817&request=0', function (error, response, body) {
+        console.log('error:', error); // Print the error if one occurred
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); // Print the HTML for the Google homepage.
+    });
+
+    
 
     res.render('consent', { title: 'You have now given consent' });
 

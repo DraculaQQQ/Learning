@@ -179,20 +179,29 @@ router.get('/oauth2callback/', function (req, res, next) {
                 } else {
                     console.log('Something went wrong');
                 }
-                console.log(checkForRequests(id));
+
                 Requests.findOne({approved: 0}, function (err, response) {
                     if (!err) {
                         if(!response){
                             console.log('fandt intet')
                         }else{
                             console.log('I do something else');
+                            res.render('profile', {
+                                id: id,
+                                gender: gender,
+                                nationality: nationality,
+                                email: email,
+                                name: name,
+                                picture: picture,
+                                vemail: verifiedEmail
+                            });
                         }
 
                     }
                 });
 
 
-                
+                    /*
                     res.render('profile', {
                         id: id,
                         gender: gender,
@@ -202,6 +211,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                         picture: picture,
                         vemail: verifiedEmail
                     });
+                    */
 
             });
 

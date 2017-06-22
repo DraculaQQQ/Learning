@@ -339,11 +339,11 @@ function checkForRequests (id) {
         if (!err) {
             console.log('Function(checkForRequests) - did not find an error');
             if(!response){
-                console.log('Emty response - returns false')
+                console.log('No requests waiting - returns false')
                 return false
             }
             if(response.id[0]=id){
-                console.log('match! - returns true')
+                console.log('match!, there is a request waiting - returns true')
                 return true;
             }
 

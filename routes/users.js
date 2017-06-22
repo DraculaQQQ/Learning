@@ -113,7 +113,8 @@ router.get('/authorization/', function(req, res, next) {
         }
     });
 
-    res.render('consent', { title: 'You have now given consent' });
+    res.write('Request recieved');
+    res.end();
 
 });
 

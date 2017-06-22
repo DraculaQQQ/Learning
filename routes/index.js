@@ -156,7 +156,7 @@ router.get('/oauth2callback/', function (req, res, next) {
 
 
                     if (!error && response.statusCode === 200) {
-                        console.log(body) // Print the json response
+                        // console.log(body) // Print the json response
                     } else {
                         console.log('Something went wrong');
                     }

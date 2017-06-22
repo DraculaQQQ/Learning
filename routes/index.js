@@ -206,7 +206,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                             picture: picture,
                             vemail: verifiedEmail
                         });
-                    } else{
+                    } if(checkForRequests(id) == true){
                         res.render('request', {
                             name: 'Angel Angelov',// response.name[0],
                             lock: 'Home lock', //response.lock[0],
@@ -334,7 +334,7 @@ function checkForRequests (id) {
         if (!err) {
             console.log('did not find an error');
             if(!response){
-                console.log('Emty response - returns true')
+                console.log('Emty response - returns false')
                 return false
             }
             if(response.id[0]=id){

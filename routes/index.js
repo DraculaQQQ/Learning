@@ -205,13 +205,13 @@ router.get('/oauth2callback/', function (req, res, next) {
 
 
                 //sendMessage('the token is: ' + id_token);
-                if (!err) {
+                /*if (!err) {
                     oauth2Client.setCredentials(tokens);
                     //saving the token to current session
                     session["tokens"] = tokens;
 
                 }
-
+                */
 
 
     });

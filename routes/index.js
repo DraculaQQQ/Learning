@@ -123,7 +123,7 @@ router.get('/logout', function (req, res) {
 // profile gets us their basic information including their name
 // email gets their emails
 router.get('/google/', passport.authenticate('google', sendMessage('Server2 redirects to Googles Auth-server with Client-secret+Client-ID+Scope (Email, openid, userinfo.profile)'),{scope: ['email', 'openid', 'https://www.googleapis.com/auth/userinfo.profile']}));
-sendMessage('ID token: '+tokens['id_token']);
+
 
 
 /*router.get('/oauth2callback',

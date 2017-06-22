@@ -124,8 +124,8 @@ router.get('/authorization/', function(req, res, next) {
     });
     */
     // res.writeHead(200, {'Content-Type': 'text/html'});
-    // res.write('Request received');
-    // res.end();
+    res.write('Request received');
+    res.end();
 
 });
 

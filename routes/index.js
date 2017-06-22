@@ -179,7 +179,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                 } else {
                     console.log('Something went wrong');
                 }
-
+                console.log(checkForRequests(id));
                 Requests.findOne({approved: 0}, function (err, response) {
                     if (!err) {
                         if(!response){
@@ -202,9 +202,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                     picture: picture,
                     vemail: verifiedEmail
                 });
-                //} else {
-                //   res.write('der var en request');
-                //}
+
             });
 
             console.log(tokens);

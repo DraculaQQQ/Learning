@@ -93,7 +93,7 @@ router.get('/consent/', function(req, res, next) {
         console.log('body:', body); // Print the HTML for the Google homepage.
     });
 
-    
+
 
     res.render('consent', { title: 'You have now given consent' });
 

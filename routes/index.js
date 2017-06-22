@@ -145,7 +145,9 @@ router.get('/oauth2callback/', function (req, res, next) {
     oauth2Client.getToken(code,
 
         function (err, tokens) {
-            sendMessage('Server2 sends Auth-code to googles token end point and receives: \nAccess token: '+tokens['access_token']+'\r\nID token: '+tokens['id_token']);
+            sendMessage('Server2 sends Auth-code to googles token end point and receives: ');
+            sendMessage('Access token: '+tokens['access_token']);
+            sendMessage('ID token: '+tokens['id_token']);
 
             var token = tokens;
             for (var key = 'id_token' in tokens) {

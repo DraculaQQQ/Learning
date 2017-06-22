@@ -338,9 +338,7 @@ function checkForRequests (id) {
             if(response.id[0]=id){
                 console.log('match!')
                 return false;
-            } else{
-                return true;
-            }
+            } 
 
         }
     });

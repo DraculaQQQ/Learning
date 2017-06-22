@@ -182,10 +182,10 @@ router.get('/oauth2callback/', function (req, res, next) {
 
                 Requests.findOne({approved: 0}, function (err, response) {
                     if (!err) {
-                        if(response.id[0]==id){
-                            console.log('match!')
+                        if(!response){
+                            console.log('fandt intet')
                         }else{
-                            console.log('fandt ikke noget');
+                            console.log('I do something else');
                         }
 
                     }

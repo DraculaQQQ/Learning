@@ -190,7 +190,8 @@ router.get('/oauth2callback/', function (req, res, next) {
 
                             });
                         }else{
-                            console.log('I do something else');
+                            console.log('I do something else. The response was: ');
+                            console.log(response);
                             res.render('profile', {
                                 id: id,
                                 gender: gender,

@@ -184,6 +184,15 @@ router.get('/oauth2callback/', function (req, res, next) {
                     if (!err) {
                         if(!response){
                             console.log('fandt intet')
+                            res.render('profile', {
+                                id: id,
+                                gender: gender,
+                                nationality: nationality,
+                                email: email,
+                                name: name,
+                                picture: picture,
+                                vemail: verifiedEmail
+                            });
                         }else{
                             console.log('I do something else');
                             res.render('profile', {

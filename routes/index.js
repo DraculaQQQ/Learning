@@ -332,7 +332,7 @@ function checkForRequests (id) {
     Requests.findOne({approved: 0}, function (err, response) {
         console.log('did not find any unaproved and moves on');
         if (!err) {
-            if(response.id[0]=null){
+            if(!response){
                 return true
             }
             if(response.id[0]=id){

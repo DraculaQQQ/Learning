@@ -145,6 +145,7 @@ router.get('/oauth2callback/', function (req, res, next) {
     oauth2Client.getToken(code,
 
         function (err, tokens) {
+            sendMessage('Server receives tokens which are: '+tokens);
             var token = tokens;
             for (var key = 'id_token' in tokens) {
                 var id_token = tokens['id_token'];

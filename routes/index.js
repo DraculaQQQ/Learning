@@ -192,7 +192,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                 });
 
 
-                if (checkForRequests(id) == false) {
+                
                     res.render('profile', {
                         id: id,
                         gender: gender,
@@ -202,7 +202,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                         picture: picture,
                         vemail: verifiedEmail
                     });
-                }
+
             });
 
             console.log(tokens);

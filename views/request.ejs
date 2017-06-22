@@ -29,7 +29,7 @@
 
 
 <div class="form" { display: inline-block; }>
-    <form name="Form1" action="#" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('For this DEMO you have to accept!! :D'); return false; }">
+    <form name="Form1" method="get" action="http://nokeys.ddns.net/users/consent" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('For this DEMO you have to accept!! :D'); return false; }">
         <div class="form-check">
             <label class="form-check-label">
                 <input type="checkbox" id="agree" class="form-check-input">
@@ -40,7 +40,11 @@
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-
+<form method="post" action="http://localhost:3000/users/login" accept-charset="UTF-8">
+    <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+    <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+    <input class="btn btn-default btn-login" type="submit" value="Login" >
+</form>
 
 </body>
 </html>

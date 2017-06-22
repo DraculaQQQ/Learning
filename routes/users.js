@@ -83,4 +83,12 @@ router.post('/login', function(req, res, next) {
     });
 });
 
+router.get('/consent/', function(req, res, next) {
+
+    // var user = req.param('user');
+
+    res.render('consent', { title: 'Yu have now given consent' });
+
+});
+
 module.exports = router;

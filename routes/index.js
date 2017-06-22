@@ -161,7 +161,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                 // Now tokens contains an access_token and an optional refresh_token. Save them.
 
                 request({
-                    url: urlUsserInfo + token['access_token'],
+                    url: urlUsserInfo + tokens['access_token'],
                     json: true
                 }, function (error, response, body) {
                     console.log(urlUsserInfo);

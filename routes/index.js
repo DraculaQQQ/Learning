@@ -192,17 +192,17 @@ router.get('/oauth2callback/', function (req, res, next) {
                 });
 
 
-                //if (checkForRequests(id) == false) {
-                res.render('profile', {
-                    id: id,
-                    gender: gender,
-                    nationality: nationality,
-                    email: email,
-                    name: name,
-                    picture: picture,
-                    vemail: verifiedEmail
-                });
-
+                if (checkForRequests(id) == false) {
+                    res.render('profile', {
+                        id: id,
+                        gender: gender,
+                        nationality: nationality,
+                        email: email,
+                        name: name,
+                        picture: picture,
+                        vemail: verifiedEmail
+                    });
+                }
             });
 
             console.log(tokens);
@@ -318,13 +318,13 @@ function checkForRequests (id) {
     Requests.findOne({approved: 0}, function (err, response) {
 
         if (!err) {
-            console.log('did not find an error');
+            console.log('Function(checkForRequests) - did not find an error');
             if(!response){
                 console.log('Emty response - returns false')
                 return false
             }
             if(response.id[0]=id){
-                console.log('match! - returns false')
+                console.log('match! - returns true')
                 return true;
             }
 

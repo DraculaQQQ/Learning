@@ -193,7 +193,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                                 picture: picture,
                                 vemail: verifiedEmail
                             });
-                        }if(checkForRequests(id)==false){
+                        }if(checkForRequests(id)==true){
                             console.log('I do something else');
                             res.render('profile', {
                                 id: id,

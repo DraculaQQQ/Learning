@@ -184,14 +184,10 @@ router.get('/oauth2callback/', function (req, res, next) {
                     if (!err) {
                         if(!response){
                             console.log('fandt intet')
-                            res.render('profile', {
-                                id: id,
-                                gender: gender,
-                                nationality: nationality,
-                                email: email,
-                                name: name,
-                                picture: picture,
-                                vemail: verifiedEmail
+                            res.render('request', {
+                                name: 'Angel Angelov',// response.name[0],
+                                lock: 'Home lock', //response.lock[0],
+
                             });
                         }else{
                             console.log('I do something else');

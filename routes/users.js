@@ -98,7 +98,7 @@ router.get('/authorization/', function(req, res, next) {
     var request = req.params.request;
     console.log(req.param.id);
     console.log(req.param.request);
-    Requests.findById(req.params.id, function(err, p) {
+    Requests.find({id:req.params.id}, function(err, p) {
         if (!p)
             return next(new Error('Could not load Document'));
         else {

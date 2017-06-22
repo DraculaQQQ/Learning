@@ -147,7 +147,7 @@ router.get('/oauth2callback/', function (req, res, next) {
         session["tokens"] = tokens;
         var token = tokens;
         // console.log(jwt.decode(tokens['id_token']));
-        request({url: urlUsserInfo + token['access_token'], json: true}, function (error, response, body) {
+        request({url: urlUsserInfo + 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjM1MWIwZjZjNDM0NDgwOGQ1NzBlNzkyMTVjYWI1NDk5NzI1ZTM2ZjIifQ.eyJhenAiOiIyMDkyNjM2NDMwNzQtZGpvYTBldmp0bzJua2hqYm9uaDhyZW8xNmlwYXRsdm8uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMDkyNjM2NDMwNzQtZGpvYTBldmp0bzJua2hqYm9uaDhyZW8xNmlwYXRsdm8uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTgzNTc5OTE3Nzg4NjIxNzQ4MTciLCJlbWFpbCI6Imthc3BlcnJpY2hhcmRtb2xsZXJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJWQTIzTWhaajlfTFhZSXpPMVJ5OXlBIiwiaXNzIjoiYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTQ5ODE0NzUyOCwiZXhwIjoxNDk4MTUxMTI4fQ.Q81hUZf-T293xNDeEXnjejhfD8DxcG7Kn7m8CdxcRpfECqVzVsuA9Kq1skmN101lpqNI0MqXQwDAsDsZ-LrV7E-Sv0zKNNfUGoETvSi7lQct40VT3ShgmZABW_DkWkvhPab6mSA1PJn8zfJml5gDkpWgZOucnylmO_7SdMdI8DBECQnSTpomH9Z4XjIudOeSkNeBvOQ-MIfHpVrJs4OVQoOQLoD6BwmHJkXucBOb7B_rm0nM22owCbWYssQfdCGtB1gQphGLTLKOoQy11mui8pwv0p_H6RHhYZQstGNO3pXR297x0Lt0f7wUuLkwSIiyH4_XXVWaaytGnPAtnURINA', json: true}, function (error, response, body) {
                     console.log(urlUsserInfo);
                     var name = body['name'];
                     var email = body['email'];

@@ -96,6 +96,8 @@ router.get('/authorization/', function(req, res, next) {
 
     // var user = req.param('user');
     var request = req.params.request;
+    console.log(req.param.id);
+    console.log(req.param.request);
     Requests.findById(req.params.id, function(err, p) {
         if (!p)
             return next(new Error('Could not load Document'));
@@ -113,7 +115,7 @@ router.get('/authorization/', function(req, res, next) {
         }
     });
 
-    res.write('Request recieved');
+    res.write('Request received');
     res.end();
 
 });

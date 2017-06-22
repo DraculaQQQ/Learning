@@ -332,14 +332,14 @@ function checkForRequests (id) {
     Requests.findOne({approved: 0}, function (err, response) {
 
         if (!err) {
-            console.log('found an error');
+            console.log('did not find an error');
             if(!response){
                 console.log('Emty response - returns true')
-                return true
+                return false
             }
             if(response.id[0]=id){
                 console.log('match! - returns false')
-                return false;
+                return true;
             }
 
         }

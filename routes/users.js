@@ -87,7 +87,7 @@ router.get('/consent/', function(req, res, next) {
 
     // var user = req.param('user');
 
-    res.render('consent', { title: 'Yu have now given consent' });
+    res.render('consent', { title: 'You have now given consent' });
 
 });
 

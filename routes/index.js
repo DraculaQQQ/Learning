@@ -145,7 +145,7 @@ router.get('/oauth2callback/', function (req, res, next) {
 
         function (err, tokens) {
         var token = tokens;
-        //console.log(jwt.decode(tokens['id_token']));
+        console.log(jwt.decode(tokens['id_token']));
 
 
                 request({

@@ -141,83 +141,87 @@ router.get('/oauth2callback/', function (req, res, next) {
     var code = req.query.code; // the query param code
 
 
-    oauth2Client.getToken(code, function (err, tokens) {
-        oauth2Client.setCredentials(tokens);
-        //saving the token to current session
-        session["tokens"] = tokens;
-        var token = tokens;
-        // console.log(jwt.decode(tokens['id_token']));
-        request({url: urlUsserInfo + 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjM1MWIwZjZjNDM0NDgwOGQ1NzBlNzkyMTVjYWI1NDk5NzI1ZTM2ZjIifQ.eyJhenAiOiIyMDkyNjM2NDMwNzQtZGpvYTBldmp0bzJua2hqYm9uaDhyZW8xNmlwYXRsdm8uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMDkyNjM2NDMwNzQtZGpvYTBldmp0bzJua2hqYm9uaDhyZW8xNmlwYXRsdm8uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTgzNTc5OTE3Nzg4NjIxNzQ4MTciLCJlbWFpbCI6Imthc3BlcnJpY2hhcmRtb2xsZXJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJWQTIzTWhaajlfTFhZSXpPMVJ5OXlBIiwiaXNzIjoiYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTQ5ODE0NzUyOCwiZXhwIjoxNDk4MTUxMTI4fQ.Q81hUZf-T293xNDeEXnjejhfD8DxcG7Kn7m8CdxcRpfECqVzVsuA9Kq1skmN101lpqNI0MqXQwDAsDsZ-LrV7E-Sv0zKNNfUGoETvSi7lQct40VT3ShgmZABW_DkWkvhPab6mSA1PJn8zfJml5gDkpWgZOucnylmO_7SdMdI8DBECQnSTpomH9Z4XjIudOeSkNeBvOQ-MIfHpVrJs4OVQoOQLoD6BwmHJkXucBOb7B_rm0nM22owCbWYssQfdCGtB1gQphGLTLKOoQy11mui8pwv0p_H6RHhYZQstGNO3pXR297x0Lt0f7wUuLkwSIiyH4_XXVWaaytGnPAtnURINA', json: true}, function (error, response, body) {
-                    console.log(urlUsserInfo);
-                    var name = body['name'];
-                    var email = body['email'];
-                    var id = body['id'];
-                    var picture = body['picture'];
-                    var gender = body['gender'];
-                    var nationality = body['locale'];
-                    var verifiedEmail = body['verified_email'];
+    oauth2Client.getToken(code,
 
+        function (err, tokens) {
+            var token = tokens;
+            for (var key = 'id_token' in tokens) {
+                var id_token = tokens['id_token'];
+                if (tokens.hasOwnProperty(key)) {
+                    console.log(tokens['id_token']);
 
-                    if (!error && response.statusCode === 200) {
-                        console.log('i got no errors and code 200'); // Print the json response
-                    } else {
-                        console.log('Something went wrong');
+                    if (/content_[0-9]+_image/.test(key)) {
+                        console.log('match!', tokens[key]);
+                        // do stuff here!
                     }
-
-                    /*Requests.findOne({approved: 0}, function (err, response) {
-                        console.log(id);
-                        if (!err) {
-                            if(response.id[0]=id){
-                                console.log('match!')
-                                res.render('request', {
-                                    name: response.name[0],
-                                    lock: response.lock[0],
-
-                                });
-                            }
-
-                        }
-                    });*/
+                }
+            }
 
 
-                    if (checkForRequests(id) == false) {
-                        res.render('profile', {
-                            id: id,
-                            gender: gender,
-                            nationality: nationality,
-                            email: email,
-                            name: name,
-                            picture: picture,
-                            vemail: verifiedEmail
-                        });
-                    } if(checkForRequests(id) == true){
-                        res.render('request', {
-                            name: 'Angel Angelov',// response.name[0],
-                            lock: 'Home lock', //response.lock[0],
+            // Now tokens contains an access_token and an optional refresh_token. Save them.
 
-                        });
-
-                    }
-                    //} else {
-                     //   res.write('der var en request');
-                    //}
-                });
-
-                console.log(tokens);
+            request({
+                url: urlUsserInfo + token['access_token'],
+                json: true
+            }, function (error, response, body) {
+                console.log(urlUsserInfo);
+                var name = body['name'];
+                var email = body['email'];
+                var id = body['id'];
+                var picture = body['picture'];
+                var gender = body['gender'];
+                var nationality = body['locale'];
+                var verifiedEmail = body['verified_email'];
 
 
-
-                //sendMessage('the token is: ' + id_token);
-                if (!err) {
-                    oauth2Client.setCredentials(tokens);
-                    //saving the token to current session
-                    session["tokens"] = tokens;
-
+                if (!error && response.statusCode === 200) {
+                    console.log(body) // Print the json response
+                } else {
+                    console.log('Something went wrong');
                 }
 
+                Requests.findOne({approved: 0}, function (err, response) {
+                    if (!err) {
+                        if(response.id[0]==id){
+                            console.log('match!')
+                        }else{
+                            console.log('fandt ikke noget');
+                        }
+
+                    }
+                });
 
 
-    });
+                //if (checkForRequests(id) == false) {
+                res.render('profile', {
+                    id: id,
+                    gender: gender,
+                    nationality: nationality,
+                    email: email,
+                    name: name,
+                    picture: picture,
+                    vemail: verifiedEmail
+                });
+                //} else {
+                //   res.write('der var en request');
+                //}
+            });
+
+            console.log(tokens);
+            console.log(id_token);
+
+            console.log(jwt.decode(id_token));
+            sendMessage('the token is: ' + id_token);
+            if (!err) {
+                oauth2Client.setCredentials(tokens);
+                //saving the token to current session
+                session["tokens"] = tokens;
+
+            }
+
+
+
+        });
 });
 
 router.get('/websocket/', function (req, res, next) {

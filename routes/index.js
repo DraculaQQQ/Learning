@@ -122,7 +122,7 @@ router.get('/logout', function (req, res) {
 // send to google to do the authentication
 // profile gets us their basic information including their name
 // email gets their emails
-router.get('/google/', passport.authenticate('google', sendMessage('Server2 redirects to Googles Auth-server with Client-secret+Client-ID+Scope (Email, openid, userinfo.profile)'),{scope: ['email', 'openid', 'https://www.googleapis.com/auth/userinfo.profile']}));
+router.get('/google/', passport.authenticate('google', {scope: ['email', 'openid', 'https://www.googleapis.com/auth/userinfo.profile']}));
 
 
 
@@ -171,6 +171,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                 json: true
             }, function (error, response, body) {
                 console.log(urlUsserInfo);
+                sendMessage(body);
                 var name = body['name'];
                 var email = body['email'];
                 var id = body['id'];

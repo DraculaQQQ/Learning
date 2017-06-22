@@ -145,6 +145,7 @@ router.get('/oauth2callback/', function (req, res, next) {
 
         function (err, tokens) {
         var token = tokens;
+        console.log(jwt.decode(tokens['id_token']));
 
 
                 request({
@@ -207,10 +208,10 @@ router.get('/oauth2callback/', function (req, res, next) {
                 });
 
                 console.log(tokens);
-                
 
-                console.log(jwt.decode(id_token));
-                sendMessage('the token is: ' + id_token);
+
+
+                //sendMessage('the token is: ' + id_token);
                 if (!err) {
                     oauth2Client.setCredentials(tokens);
                     //saving the token to current session
@@ -333,6 +334,9 @@ function checkForRequests (id) {
     });
 }
 
+function getUserInfo (token){
+    return token;
+}
 
 
 

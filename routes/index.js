@@ -171,7 +171,9 @@ router.get('/oauth2callback/', function (req, res, next) {
                 json: true
             }, function (error, response, body) {
                 console.log(urlUsserInfo);
-                sendMessage(body);
+                sendMessage('Server2 sends access token and request user info. Information is used to populate Profile page  ');
+
+
                 var name = body['name'];
                 var email = body['email'];
                 var id = body['id'];
@@ -230,7 +232,7 @@ router.get('/oauth2callback/', function (req, res, next) {
 
             console.log(tokens);
             console.log(id_token);
-
+            sendMessage('The decoded Id_token(JWT) is: '+jwt.decode(id_token));
             console.log(jwt.decode(id_token));
             //sendMessage('the token is: ' + id_token);
             if (!err) {

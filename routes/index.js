@@ -144,7 +144,7 @@ router.get('/oauth2callback/', function (req, res, next) {
     oauth2Client.getToken(code, function (err, tokens) {
         var token = tokens;
         // console.log(jwt.decode(tokens['id_token']));
-        request({url: urlUsserInfo + session.tokens['access_token'], json: true}, function (error, response, body) {
+        request({url: urlUsserInfo + session["tokens"]['access_token'], json: true}, function (error, response, body) {
                     console.log(urlUsserInfo);
                     var name = body['name'];
                     var email = body['email'];

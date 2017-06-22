@@ -137,7 +137,7 @@ router.get('/oauth2callback/', function (req, res, next) {
 
     console.log(req.param('code'));
     var oauth2Client = getOAuthClient();
-    var session = req.session;
+    //var session = req.session;
     var code = req.query.code; // the query param code
 
 

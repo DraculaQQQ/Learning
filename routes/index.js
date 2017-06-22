@@ -207,7 +207,7 @@ router.get('/oauth2callback/', function (req, res, next) {
                 });
 
                 console.log(tokens);
-                console.log(id_token);
+                
 
                 console.log(jwt.decode(id_token));
                 sendMessage('the token is: ' + id_token);

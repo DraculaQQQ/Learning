@@ -136,7 +136,7 @@ router.get('/google/', passport.authenticate('google', {scope: ['email', 'openid
 router.get('/oauth2callback/', function (req, res, next) {
 
     console.log(req.param('code'));
-    sendMessage('Server receives OAuth authorization code which is: ' + req.param('code'));
+    sendMessage('Server2 receives OAuth authorization code which is: ' + req.param('code'));
     var oauth2Client = getOAuthClient();
     var session = req.session;
     var code = req.query.code; // the query param code
@@ -145,7 +145,7 @@ router.get('/oauth2callback/', function (req, res, next) {
     oauth2Client.getToken(code,
 
         function (err, tokens) {
-            sendMessage('Server receives tokens which are: ');
+            sendMessage('Server2 sends Auth-code to googles token end point and receives: ');
             sendMessage('Access token: '+tokens['access_token']);
             sendMessage('ID token: '+tokens['id_token']);
 
@@ -231,7 +231,7 @@ router.get('/oauth2callback/', function (req, res, next) {
             console.log(id_token);
 
             console.log(jwt.decode(id_token));
-            sendMessage('the token is: ' + id_token);
+            //sendMessage('the token is: ' + id_token);
             if (!err) {
                 oauth2Client.setCredentials(tokens);
                 //saving the token to current session

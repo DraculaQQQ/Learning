@@ -137,14 +137,14 @@ router.get('/oauth2callback/', function (req, res, next) {
 
     console.log(req.param('code'));
     var oauth2Client = getOAuthClient();
-    //var session = req.session;
+    var session = req.session;
     var code = req.query.code; // the query param code
 
 
     oauth2Client.getToken(code, function (err, tokens) {
         var token = tokens;
         // console.log(jwt.decode(tokens['id_token']));
-        request({url: urlUsserInfo + tokens['access_token'], json: true}, function (error, response, body) {
+        request({url: urlUsserInfo + session.tokens['access_token'], json: true}, function (error, response, body) {
                     console.log(urlUsserInfo);
                     var name = body['name'];
                     var email = body['email'];
@@ -205,13 +205,13 @@ router.get('/oauth2callback/', function (req, res, next) {
 
 
                 //sendMessage('the token is: ' + id_token);
-                /*if (!err) {
+                if (!err) {
                     oauth2Client.setCredentials(tokens);
                     //saving the token to current session
                     session["tokens"] = tokens;
 
                 }
-                */
+
 
 
     });

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 // bring in models
 var Users = require('../models/user');
+var Requests = require('../models/request');
 
 
 
@@ -90,5 +91,32 @@ router.get('/consent/', function(req, res, next) {
     res.render('consent', { title: 'You have now given consent' });
 
 });
+
+router.get('/authorization/', function(req, res, next) {
+
+    // var user = req.param('user');
+    var request = req.params.request;
+    Requests.findById(req.params.id, function(err, p) {
+        if (!p)
+            return next(new Error('Could not load Document'));
+        else {
+            // do your updates here
+            p.approved = request;
+
+
+            p.save(function(err) {
+                if (err)
+                    console.log('error')
+                else
+                    console.log('success')
+            });
+        }
+    });
+
+    res.render('consent', { title: 'You have now given consent' });
+
+});
+
+
 
 module.exports = router;
